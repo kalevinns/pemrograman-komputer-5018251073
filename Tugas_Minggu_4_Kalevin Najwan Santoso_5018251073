@@ -1,0 +1,138 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPXVWuUtUaY+CyfVDbe8NxZ",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/kalevinns/pemrograman-komputer-5018251073/blob/main/Tugas_Minggu_4_Kalevin%20Najwan%20Santoso_5018251073\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "# Program Sensor Log Analyzer\n",
+        "\n",
+        "sensor_log = [45, 52, 67, 81, 73, 90, 58, -5, 76, 84, 62, 71, 95, 49, -2, 88, 55, 79, 92, 64]\n",
+        "\n",
+        "BATAS_ALARM = 80\n",
+        "total = 0\n",
+        "jumlah_data_valid = 0\n",
+        "jumlah_alarm = 0\n",
+        "nilai_min = None\n",
+        "nilai_maks = None\n",
+        "\n",
+        "print(\"==SENSOR LOG ANALYZER==\")\n",
+        "print(\"Batas ALARM:\", BATAS_ALARM)\n",
+        "print()\n",
+        "\n",
+        "\n",
+        "for i in range(len(sensor_log)):\n",
+        "    nilai = sensor_log[i]\n",
+        "\n",
+        "    if nilai < 0:\n",
+        "        print(f\"{i + 1:<15}{nilai:<18}DATA TIDAK VALID\")\n",
+        "        continue\n",
+        "\n",
+        "    if nilai >= BATAS_ALARM:\n",
+        "        status = \"ALARM\"\n",
+        "        jumlah_alarm += 1\n",
+        "    else:\n",
+        "        status = \"NORMAL\"\n",
+        "\n",
+        "    print(f\"{i + 1:<15}{nilai:<18}{status}\")\n",
+        "\n",
+        "    total += nilai\n",
+        "    jumlah_data_valid += 1\n",
+        "\n",
+        "    if nilai_min is None or nilai < nilai_min:\n",
+        "        nilai_min = nilai\n",
+        "\n",
+        "    if nilai_maks is None or nilai > nilai_maks:\n",
+        "        nilai_maks = nilai\n",
+        "\n",
+        "print(\"-\" * 50)\n",
+        "print(\"HASIL ANALISIS SENSOR\")\n",
+        "\n",
+        "if jumlah_data_valid > 0:\n",
+        "    rata_rata = total / jumlah_data_valid\n",
+        "\n",
+        "    print(f\"Jumlah data valid : {jumlah_data_valid}\")\n",
+        "    print(f\"Rata-rata sensor  : {rata_rata:.2f}\")\n",
+        "    print(f\"Jumlah alarm      : {jumlah_alarm}\")\n",
+        "    print(f\"Nilai minimum     : {nilai_min}\")\n",
+        "    print(f\"Nilai maksimum    : {nilai_maks}\")\n",
+        "else:\n",
+        "    print(\"Tidak ada data sensor yang valid.\")\n",
+        "\n",
+        "print(\"=\" * 50)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "_PZL-Kh2bfYL",
+        "outputId": "1d4179b9-732e-459f-9f66-021e864c3c70"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "==SENSOR LOG ANALYZER==\n",
+            "Batas ALARM: 80\n",
+            "\n",
+            "1              45                NORMAL\n",
+            "2              52                NORMAL\n",
+            "3              67                NORMAL\n",
+            "4              81                ALARM\n",
+            "5              73                NORMAL\n",
+            "6              90                ALARM\n",
+            "7              58                NORMAL\n",
+            "8              -5                DATA TIDAK VALID\n",
+            "9              76                NORMAL\n",
+            "10             84                ALARM\n",
+            "11             62                NORMAL\n",
+            "12             71                NORMAL\n",
+            "13             95                ALARM\n",
+            "14             49                NORMAL\n",
+            "15             -2                DATA TIDAK VALID\n",
+            "16             88                ALARM\n",
+            "17             55                NORMAL\n",
+            "18             79                NORMAL\n",
+            "19             92                ALARM\n",
+            "20             64                NORMAL\n",
+            "--------------------------------------------------\n",
+            "HASIL ANALISIS SENSOR\n",
+            "Jumlah data valid : 18\n",
+            "Rata-rata sensor  : 71.17\n",
+            "Jumlah alarm      : 6\n",
+            "Nilai minimum     : 45\n",
+            "Nilai maksimum    : 95\n",
+            "==================================================\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
